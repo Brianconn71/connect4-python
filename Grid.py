@@ -31,4 +31,42 @@ class Grid:
         for c in range(self._columns):
             if self._grid[row][c] == piece:
                 count += 1
+            else:
+                count = 0
+            if count == connectN:
+                return True
+        
+        # Check vertically
+        count = 0
+        for r in range(self._rows):
+            if self._grid[r][col] == piece:
+                count += 1
+            else:
+                count = 0
+            if count == connectN:
+                return True
+        
+        #  check diagonally
+        count = 0
+        for r in range(self._rows):
+            c = row + col - r
+            if c >= 0 and c < self._columns and self._grid[r][c] == piece:
+                count += 1
+            else:
+                count = 0
+            if count == connectN:
+                return True
+        
+        #  check anti diagonally
+        count = 0
+        for r in range(self._rows):
+            c = col - row + r
+            if c >= 0 and c < self._columns and self._grid[r][c] == piece:
+                count += 1
+            else:
+                count = 0
+            if count == connectN:
+                return True
+        
+        return False
         
